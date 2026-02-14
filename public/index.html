@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Footprint Analyzer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: Arial, sans-serif;
+        background: #f5f6fb;
+        color: #1a1a1a;
+      }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .card {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      }
+      h1, h2 {
+        margin-top: 0;
+      }
+      form {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+      input, select, button {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccd2df;
+      }
+      button {
+        background: #2f5bea;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+      .totals {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+      }
+      .total-box {
+        background: #eef2ff;
+        padding: 12px;
+        border-radius: 10px;
+      }
+      .status {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      code { background: #eef2ff; padding: 2px 4px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Social Media Footprint Analyzer</h1>
+      <p>Track app visits by email and generate a linear trend graph of your usage score.</p>
+
+      <div class="card">
+        <h2>1) Record a visit event</h2>
+        <form id="track-form">
+          <input id="email" type="email" placeholder="Email" required />
+          <input id="appName" type="text" placeholder="App name (e.g. Instagram)" required />
+          <select id="category" required>
+            <option value="social_media">Social media</option>
+            <option value="third_party">Third-party app</option>
+            <option value="other">Other app</option>
+          </select>
+          <button type="submit">Save Visit</button>
+        </form>
+        <div id="track-status" class="status"></div>
+      </div>
+
+      <div class="card">
+        <h2>2) Analyze a user footprint</h2>
+        <form id="analyze-form">
+          <input id="lookup-email" type="email" placeholder="Email to analyze" required />
+          <button type="submit">Generate Analytics</button>
+        </form>
+        <div id="analysis-status" class="status"></div>
+      </div>
+
+      <div class="card">
+        <h2>Summary</h2>
+        <div class="totals">
+          <div class="total-box">Social media visits: <strong id="social-total">0</strong></div>
+          <div class="total-box">Third-party visits: <strong id="third-party-total">0</strong></div>
+          <div class="total-box">Other visits: <strong id="other-total">0</strong></div>
+          <div class="total-box">Total events: <strong id="event-total">0</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Algorithm Map Trend (Linear Graph)</h2>
+        <p>Usage score formula: <code>third_party * 3 + social_media * 2 + other * 1</code></p>
+        <canvas id="trend-chart" height="120"></canvas>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
