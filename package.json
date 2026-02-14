@@ -1,0 +1,10 @@
+{
+  "name": "social-media-footprint-analyzer",
+  "version": "1.0.0",
+  "description": "Full-stack social media footprint analyzer demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
